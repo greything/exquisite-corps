@@ -1,0 +1,48 @@
+<h1>Time to make something!</h1>
+<p style="color: green"><%= flash[:notice] %></p>
+
+<% form_for @post, :html => { :multipart => true }  do |f| %>
+<%= f.error_messages %>
+
+
+  <% if !@chain.posts.last || !@chain.posts.last.text %>
+  <p>
+	<% if !@chain.posts.last %>
+	<p>You are starting a new chain... please type a phrase to launch it off. Something evocative... provocative...</p>
+	<% else %>
+	<p>Caption/describe this picture:<br>
+	 <%= image_tag @chain.posts.last.image(:main) %>
+	</p>
+	<% end %>
+	
+    <%= f.label :text %><br />
+    <%= f.text_field :text %>
+  </p>
+
+  <% elsif @chain.posts.last.text %>
+	<p>Ok, time to make a picture. Please submit a picture that embodies:<br/>
+	<b><%= @chain.posts.last.text %></b>
+	</p>
+	<%= f.label 'choose an image to upload' %>
+	<%= f.file_field :image %>	
+	
+  <% else %>
+	<p>neither of your conditions worked!</p>
+  <%end %>
+
+	<%= f.hidden_field :chain_id, :value => @chain.id %>
+	
+	<% if @chain.posts.last %>
+	<% #<p>some posts already exist! yay</p> %>
+	<%= f.hidden_field :previous_post, :value => @chain.posts.last.id %>
+	<% else %>
+	<p>no posts exist yet</p>
+	
+	
+	<% end %>
+
+
+  <p>
+    <%= f.submit 'Create' %> <%= link_to 'give me a different one!', :controller => 'application', :action => 'play' %> <%= link_to 'mark as inappropriate!',:controller => 'posts', :action => 'flag', :id => @chain.posts.last.id %>
+  </p>
+<% end %>

@@ -1,0 +1,17 @@
+<h1>Now showing <%= @chain.title %></h1>
+<p style="color: green"><%= flash[:notice] %></p>
+
+
+There are currently <%= @chain.posts.length %> posts in this chain.
+
+<% @chain.posts.each do |post| %>
+
+	<% if post.text %>
+	<p><%= post.text %></p>
+	<% else %>
+	<p><%= image_tag post.image.url(:small) %>
+	<% end %>
+<% end %>
+
+
+<p><%= link_to 'play again!', :controller => 'application', :action => 'play' %></p>

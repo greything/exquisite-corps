@@ -1,0 +1,20 @@
+<html>
+
+	<head>
+		<title>Exquisite Corps... or whatever</title>
+	</head>
+
+	<body>
+		<div id="header">
+			
+		<%= link_to 'respond to somebody!', :controller => 'application', :action => 'play' %>	
+		<%= link_to 'start a new chain!', :controller => 'chains', :action => 'new' %>
+		<%= link_to 'wtf?', :controller => 'application', :action => 'about' %>		
+		
+		</div>
+		<div>
+		<%= yield %>	
+		</div>
+	</body>
+	
+</html>

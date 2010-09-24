@@ -1,0 +1,24 @@
+<h1>chains#index</h1>
+<p>Find me in app/views/chains/index.html.erb</p>
+
+<p>Make a new chain: <%= link_to 'New', new_chain_path %></p>
+
+<table>
+  <tr>
+  </tr>
+
+
+
+<% @chains.each do |chain| %>
+  <tr>
+	<td><%= chain.title %></td>
+	<td># of posts: <%= chain.posts.length %> </td>
+	<td>Max posts: <%= chain.post_length %></td>
+    <td><%= link_to 'Show', chain %></td>
+    <td><%= link_to 'Destroy', chain, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+
+</table>
+
+<br />

@@ -1,0 +1,22 @@
+<h1>So, you want to make a new chain?</h1>
+
+<% form_for(@chain) do |f| %>
+  <%= f.error_messages %>
+  <p>With great power comes great responsibility...
+    <%= f.label 'choose a phrase to start it off:' %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+
+    <%= f.hidden_field :post_length, :value => '11' %>
+
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', chains_path %>
+
